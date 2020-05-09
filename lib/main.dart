@@ -26,12 +26,14 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scorekeeper = [];
-  List<String> questions=['You can lead a cow down stairs but not up stairs.',
+  List<String> questions = [
+    'You can lead a cow down stairs but not up stairs.',
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.'
   ];
-  List<bool> answers =[false,true,true];
-  int questionNo=0;
+  List<bool> answers = [false, true, true];
+  int questionNo = 0;
+
   /*
   question1: 'You can lead a cow down stairs but not up stairs.', false,
   question2: 'Approximately one quarter of human bones are in the feet.', true,
@@ -74,6 +76,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAns = answers[questionNo];
                 setState(() {
                   scorekeeper.add(Icon(Icons.check, color: Colors.green));
                   questionNo++;
@@ -112,4 +115,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
