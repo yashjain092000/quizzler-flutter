@@ -26,12 +26,16 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scorekeeper = [];
-  List<String> questions = [
+  /*List<String> questions = [
     'You can lead a cow down stairs but not up stairs.',
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.'
   ];
-  List<bool> answers = [false, true, true];
+  List<bool> answers = [false, true, true];*/
+  List<Question> questionBank=[Question(q:'You can lead a cow down stairs but not up stairs.',a: false ),
+    Question(q:'Approximately one quarter of human bones are in the feet.',a: true ),
+    Question(q:'A slug\'s blood is green.',a: true )
+  ];
   int questionNo = 0;
 
   /*
@@ -52,7 +56,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNo],
+                questionBank[questionNo].question,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -76,7 +80,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = answers[questionNo];
+                bool correctAns = questionBank[questionNo].questionAnswer;
                   setState(() {
                   scorekeeper.add(Icon(Icons.check, color: Colors.green));
                   questionNo++;
@@ -99,7 +103,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = answers[questionNo];
+                bool correctAns = questionBank[questionNo].questionAnswer;
 
                 setState(() {
                   scorekeeper.add(Icon(Icons.close, color: Colors.red));
