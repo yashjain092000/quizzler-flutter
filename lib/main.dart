@@ -77,7 +77,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool correctAns = answers[questionNo];
-                setState(() {
+                  setState(() {
                   scorekeeper.add(Icon(Icons.check, color: Colors.green));
                   questionNo++;
                 });
@@ -99,6 +99,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAns = answers[questionNo];
+
                 setState(() {
                   scorekeeper.add(Icon(Icons.close, color: Colors.red));
                   questionNo++;
