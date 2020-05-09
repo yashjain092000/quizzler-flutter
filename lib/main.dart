@@ -30,6 +30,7 @@ class _QuizPageState extends State<QuizPage> {
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.'
   ];
+  int questionNo=0;
   /*
   question1: 'You can lead a cow down stairs but not up stairs.', false,
   question2: 'Approximately one quarter of human bones are in the feet.', true,
@@ -48,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions[questionNo],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,6 +75,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(() {
                   scorekeeper.add(Icon(Icons.check, color: Colors.green));
+                  questionNo++;
                 });
                 //The user picked true.
               },
@@ -95,6 +97,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(() {
                   scorekeeper.add(Icon(Icons.close, color: Colors.red));
+                  questionNo++;
                 });
                 //The user picked false.
               },
