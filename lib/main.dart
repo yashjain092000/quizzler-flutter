@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
 import 'quiz_Brain.dart';
 QuizBrain quizBrain=QuizBrain();
 void main() => runApp(Quizzler());
@@ -68,7 +67,13 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool correctAns = quizBrain.questionBank[questionNo].questionAnswer;
-                  setState(() {
+                if(correctAns==true){
+                  print("Right!!");
+                }
+                else {
+                  print("Wrong!!");
+                }
+                setState(() {
                   scorekeeper.add(Icon(Icons.check, color: Colors.green));
                   questionNo++;
                 });
@@ -91,7 +96,12 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool correctAns = quizBrain.questionBank[questionNo].questionAnswer;
-
+                if(correctAns==false){
+                  print("Right!!");
+                }
+                else {
+                  print("Wrong!!");
+                }
                 setState(() {
                   scorekeeper.add(Icon(Icons.close, color: Colors.red));
                   questionNo++;

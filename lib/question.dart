@@ -5,7 +5,7 @@ class Question{
   /**
    * Constructor
    */
-  Question(String s, {String q,bool a}){
+  Question( {String q,bool a}){
     question=q;
     questionAnswer=a;
   }
