@@ -28,8 +28,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scorekeeper = [];
 
-  int questionNo = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,7 +40,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNo].question,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -66,7 +64,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = quizBrain.questionBank[questionNo].questionAnswer;
+                bool correctAns = quizBrain.getQuestionAns();
                 if(correctAns==true){
                   print("Right!!");
                 }
@@ -75,7 +73,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
                 setState(() {
                   scorekeeper.add(Icon(Icons.check, color: Colors.green));
-                  questionNo++;
+                  quizBrain.nextQuestion();
                 });
                 //The user picked true.
               },
@@ -95,7 +93,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = quizBrain.questionBank[questionNo].questionAnswer;
+                bool correctAns = quizBrain.getQuestionAns();
                 if(correctAns==false){
                   print("Right!!");
                 }
@@ -104,7 +102,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
                 setState(() {
                   scorekeeper.add(Icon(Icons.close, color: Colors.red));
-                  questionNo++;
+                  quizBrain.nextQuestion();
                 });
                 //The user picked false.
               },
