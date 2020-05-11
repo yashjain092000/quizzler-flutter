@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'quiz_Brain.dart';
-QuizBrain quizBrain=QuizBrain();
+
+QuizBrain quizBrain = QuizBrain();
+
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -27,6 +29,11 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scorekeeper = [];
+
+  bool checkAns(bool userpickedAns) {
+    bool correctAns = quizBrain.getQuestionAns();
+    return correctAns == userpickedAns;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,15 +71,14 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = quizBrain.getQuestionAns();
-                if(correctAns==true){
-                  print("Right!!");
-                }
-                else {
-                  print("Wrong!!");
-                }
+                checkAns(true);
+
                 setState(() {
-                  scorekeeper.add(Icon(Icons.check, color: Colors.green));
+                  if (checkAns(true))
+                    scorekeeper.add(Icon(Icons.check, color: Colors.green));
+                  else
+                    scorekeeper.add(Icon(Icons.close, color: Colors.red));
+
                   quizBrain.nextQuestion();
                 });
                 //The user picked true.
@@ -93,15 +99,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = quizBrain.getQuestionAns();
-                if(correctAns==false){
-                  print("Right!!");
-                }
-                else {
-                  print("Wrong!!");
-                }
+                checkAns(false);
                 setState(() {
-                  scorekeeper.add(Icon(Icons.close, color: Colors.red));
+                  if (checkAns(false))
+                    scorekeeper.add(Icon(Icons.check, color: Colors.green));
+                  else
+                    scorekeeper.add(Icon(Icons.close, color: Colors.red));
                   quizBrain.nextQuestion();
                 });
                 //The user picked false.
